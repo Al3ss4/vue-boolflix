@@ -1,17 +1,20 @@
 <template>
   <div id="app">
-    <Header @ricerca='ricercaFilm'/>
+    <Header @ricerca="ricercaFilm" />
+    <Main />
   </div>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import axios from 'axios';
+import Header from "@/components/Header.vue";
+import Main from "@/components/Main.vue";
+import axios from "axios";
 
 export default {
   name: "App",
   components: {
     Header,
+    Main,
   },
   data() {
     return {
@@ -35,7 +38,7 @@ export default {
           this.arrayMovies = response.data.results;
         });
       console.log(text);
-    }
+    },
   },
 };
 </script>
