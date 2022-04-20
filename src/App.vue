@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @ricerca="ricercaFilm" />
-    <Main/>
+    <Main :films="arrayMovies" :inputRicerca="searchText"/>
   </div>
 </template>
 
@@ -9,6 +9,7 @@
 import axios from "axios";
 import Header from "@/components/Header.vue";
 import Main from "@/components/Main.vue";
+
 
 
 export default {
@@ -23,10 +24,12 @@ export default {
       key: "e73169f9140d1ed90b3e169c4bd87464",
       language: "it-IT",
       arrayMovies: [],
+      searchText:'',
     };
   },
   methods: {
     ricercaFilm(text) {
+      this.searchText = text;
       axios
         .get(this.apiUrl, {
           params: {
@@ -39,7 +42,7 @@ export default {
           this.arrayMovies = response.data.results;
           console.log(response.data.results);
         });
-      console.log(text);
+      //console.log(text);
     },
   },
 };

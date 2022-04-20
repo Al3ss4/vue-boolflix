@@ -1,0 +1,18 @@
+  <template>
+  <div>
+    <ul>
+      <li>Titolo: {{ features.title }}</li>
+      <li>Titolo originale: {{ features.original_title }}</li>
+      <li>Lingua: {{ features.original_language }}</li>
+      <li>Voto: {{ features.vote_average }}</li>
+    </ul>
+  </div>
+</template>
+<script>
+export default {
+  name: "CardComponent",
+  props: ["features"],
+};
+</script>
+<style lang="scss" scoped>
+</style>
