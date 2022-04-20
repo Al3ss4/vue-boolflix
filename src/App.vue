@@ -1,29 +1,47 @@
 <template>
   <div id="app">
-<Header />
+    <Header @ricerca='ricercaFilm'/>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from "./components/Header.vue";
+import axios from 'axios';
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Header
-  }
-}
+    Header,
+  },
+  data() {
+    return {
+      apiUrl: "https://api.themoviedb.org/3/search/movie",
+      key: "e73169f9140d1ed90b3e169c4bd87464",
+      language: "it-IT",
+      arrayMovies: [],
+    };
+  },
+  methods: {
+    ricercaFilm(text) {
+      axios
+        .get(this.apiURL, {
+          params: {
+            apiKey: this.key,
+            language: this.language,
+            query: text,
+          },
+        })
+        .then((response) => {
+          this.arrayMovies = response.data.results;
+        });
+      console.log(text);
+    }
+  },
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "@/style/commons.scss";
 </style>
 
 <!-- Milestone 1:
