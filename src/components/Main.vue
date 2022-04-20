@@ -1,12 +1,10 @@
-<template>
-  <div></div>
+<template> 
+ <div></div>
 </template>
-
 <script>
-export default {
-  name: "mainComp",
-};
-</script>
 
-<style>
-</style>
+export default {
+    name: 'MainComp',
+  
+}
+</script>

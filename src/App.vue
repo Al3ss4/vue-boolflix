@@ -1,20 +1,21 @@
 <template>
   <div id="app">
     <Header @ricerca="ricercaFilm" />
-    <Main />
+    <Main/>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import Header from "@/components/Header.vue";
 import Main from "@/components/Main.vue";
-import axios from "axios";
+
 
 export default {
   name: "App",
   components: {
     Header,
-    Main,
+    Main
   },
   data() {
     return {
@@ -27,15 +28,16 @@ export default {
   methods: {
     ricercaFilm(text) {
       axios
-        .get(this.apiURL, {
+        .get(this.apiUrl, {
           params: {
-            apiKey: this.key,
+            api_key: this.key,
             language: this.language,
             query: text,
           },
         })
         .then((response) => {
           this.arrayMovies = response.data.results;
+          console.log(response.data.results);
         });
       console.log(text);
     },
