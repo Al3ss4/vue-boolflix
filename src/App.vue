@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @ricerca="ricercaFilm" />
+    <Header @ricerca="ricercaFilm"/>
     <Main
       :films="arrayMovies"
       :series="arraySeries"
@@ -31,35 +31,36 @@ export default {
       searchText: "",
     };
   },
+  
+  
   methods: {
     ricercaFilm(text) {
       this.searchText = text;
-
-      const request = {
-        params: {
-          api_key: this.key,
-          language: this.language,
-          query: text,
-        },
-      };
-      const movies = axios.get(this.apiURL, request);
-      const series = axios.get(this.apiTvUrl, request);
-      debugger;
-
       axios
-        .all([movies, series])
-        .then(
-          axios.spread((moviesArray, tvArray) => {
-            this.arrayMovies = moviesArray.data.results;
-            this.arraySeries = tvArray.data.results;
-            console.log(tvArray.data.results, moviesArray.data.results);
-          })
-        )
-        .catch((errors) => {
-          // react on errors.
-          console.error(errors);
-        });
-    },
+      .all([
+            axios.get(this.apiUrl, {
+          params: {
+            api_key: this.key,
+            language: this.language,
+            query: text,
+          },
+        }),
+        axios.get(this.apiTvUrl, {
+          params: {
+            api_key: this.key,
+            language: this.language,
+            query: text,
+          },
+        })
+      ])
+        .then(axios.spread((responseMovies, responseTV) => {
+          this.arrayMovies = responseMovies.data.results;
+          this.arraySeries = responseTV.data.results;
+          
+        })
+      
+        )},
+        
   },
 };
 </script>
