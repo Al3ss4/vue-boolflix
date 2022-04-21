@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @ricerca="ricercaFilm"/>
+    <Header @ricerca="ricercaFilm" />
     <Main
       :films="arrayMovies"
       :series="arraySeries"
@@ -24,7 +24,7 @@ export default {
     return {
       apiUrl: "https://api.themoviedb.org/3/search/movie",
       apiTvUrl: "https://api.themoviedb.org/3/search/tv",
-      coverURL : 'https://image.tmdb.org/t/p/w500',
+      coverURL: "https://image.tmdb.org/t/p/w500",
       key: "e73169f9140d1ed90b3e169c4bd87464",
       language: "it-IT",
       arrayMovies: [],
@@ -32,36 +32,34 @@ export default {
       searchText: "",
     };
   },
-  
-  
+
   methods: {
     ricercaFilm(text) {
       this.searchText = text;
       axios
-      .all([
-            axios.get(this.apiUrl, {
-          params: {
-            api_key: this.key,
-            language: this.language,
-            query: text,
-          },
-        }),
-        axios.get(this.apiTvUrl, {
-          params: {
-            api_key: this.key,
-            language: this.language,
-            query: text,
-          },
-        })
-      ])
-        .then(axios.spread((responseMovies, responseTV) => {
-          this.arrayMovies = responseMovies.data.results;
-          this.arraySeries = responseTV.data.results;
-          
-        })
-      
-        )},
-        
+        .all([
+          axios.get(this.apiUrl, {
+            params: {
+              api_key: this.key,
+              language: this.language,
+              query: text,
+            },
+          }),
+          axios.get(this.apiTvUrl, {
+            params: {
+              api_key: this.key,
+              language: this.language,
+              query: text,
+            },
+          }),
+        ])
+        .then(
+          axios.spread((responseMovies, responseTV) => {
+            this.arrayMovies = responseMovies.data.results;
+            this.arraySeries = responseTV.data.results;
+          })
+        );
+    },
   },
 };
 </script>
