@@ -5,6 +5,9 @@
               <div>
                   <Card v-for="film in films" :key="film.id" :features="film"/>
               </div>
+              <div>
+                  <Card v-for="serie in series" :key="serie.id" :features="series"/>
+              </div>
           </div>
       </div>
   </main>
@@ -21,6 +24,7 @@ export default {
     },
     props : {
         films: Array,
+        series: Array,
         inputRicerca: String,
     }
 }

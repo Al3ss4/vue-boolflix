@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Header @ricerca="ricercaFilm" />
-    <Main :films="arrayMovies" :inputRicerca="searchText"/>
+    <Main
+      :films="arrayMovies"
+      :series="arraySeries"
+      :inputSearch="searchText"
+    />
   </div>
 </template>
 
@@ -10,39 +14,51 @@ import axios from "axios";
 import Header from "@/components/Header.vue";
 import Main from "@/components/Main.vue";
 
-
-
 export default {
   name: "App",
   components: {
     Header,
-    Main
+    Main,
   },
   data() {
     return {
       apiUrl: "https://api.themoviedb.org/3/search/movie",
+      apiTvUrl: "https://api.themoviedb.org/3/search/tv",
       key: "e73169f9140d1ed90b3e169c4bd87464",
       language: "it-IT",
       arrayMovies: [],
-      searchText:'',
+      arraySeries: [],
+      searchText: "",
     };
   },
   methods: {
     ricercaFilm(text) {
       this.searchText = text;
+
+      const request = {
+        params: {
+          api_key: this.key,
+          language: this.language,
+          query: text,
+        },
+      };
+      const movies = axios.get(this.apiURL, request);
+      const series = axios.get(this.apiTvUrl, request);
+      debugger;
+
       axios
-        .get(this.apiUrl, {
-          params: {
-            api_key: this.key,
-            language: this.language,
-            query: text,
-          },
-        })
-        .then((response) => {
-          this.arrayMovies = response.data.results;
-          console.log(response.data.results);
+        .all([movies, series])
+        .then(
+          axios.spread((moviesArray, tvArray) => {
+            this.arrayMovies = moviesArray.data.results;
+            this.arraySeries = tvArray.data.results;
+            console.log(tvArray.data.results, moviesArray.data.results);
+          })
+        )
+        .catch((errors) => {
+          // react on errors.
+          console.error(errors);
         });
-      //console.log(text);
     },
   },
 };

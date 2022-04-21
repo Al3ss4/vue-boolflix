@@ -38,6 +38,10 @@ ul {
   margin-top: 10px;
   li {
     list-style: none;
+    img{
+      width: 2%;
+      margin: 2px;
+    }
   }
 }
 </style>
