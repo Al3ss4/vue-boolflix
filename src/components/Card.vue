@@ -1,11 +1,15 @@
   <template>
   <div class="card">
     <ul>
+      <li>
+        <img :src="coverImg" :alt="features.title" />
+      </li>
       <li>Titolo: {{ features.title }}</li>
       <li>Titolo originale: {{ features.original_title }}</li>
       <li v-if="flags.includes(features.original_language)">
         <span>Lingua</span>
         <img
+          class="flag"
           :src="require(`../assets/${features.original_language}.png`)"
           alt="features.original_language"
         />
@@ -14,6 +18,7 @@
         <span class="fw-bold">Lingua</span>
 
         <img
+          class="flag"
           :src="require(`../assets/${undefined}.png`)"
           :alt="features.original_language"
         />
@@ -25,11 +30,25 @@
 <script>
 export default {
   name: "CardComponent",
-  props: ["features"],
+  props: {
+    features: {
+    type: [ Array, Object ]
+  },
+    img : String
+  },
   data() {
     return {
       flags: ["it", "fr", "es", "de", "ja", "en", "undefined"],
+      coverImg: "",
     };
+  },
+  created() {
+    this.addPoster();
+  },
+  methods: {
+    addPoster() {
+      this.coverImg = "https://image.tmdb.org/t/p/" + "w342" + this.img;
+    },
   },
 };
 </script>
@@ -38,10 +57,13 @@ ul {
   margin-top: 10px;
   li {
     list-style: none;
-    img{
-      width: 2%;
-      margin: 2px;
-    }
+    
+
+      .flag {
+        width: 2%;
+        margin: 2px;
+      }
+    
   }
 }
 </style>

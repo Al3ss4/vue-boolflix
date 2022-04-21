@@ -3,7 +3,7 @@
       <div class="container">
           <div>
               <div>
-                  <Card v-for="film in films" :key="film.id" :features="film"/>
+                  <Card v-for="film in films" :key="film.id" :features="film" :img="film.poster_path"/>
               </div>
               <div>
                   <Card v-for="serie in series" :key="serie.id" :features="series"/>
