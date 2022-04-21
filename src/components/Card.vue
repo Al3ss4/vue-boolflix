@@ -1,5 +1,5 @@
   <template>
-  <div>
+  <div class="card">
     <ul>
       <li>Titolo: {{ features.title }}</li>
       <li>Titolo originale: {{ features.original_title }}</li>
