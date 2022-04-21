@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     addPoster() {
-      this.coverImg = "https://image.tmdb.org/t/p/" + "w342" + this.img;
+      this.coverImg = "https://image.tmdb.org/t/p/" + "w200" + this.img;
     },
   },
 };
