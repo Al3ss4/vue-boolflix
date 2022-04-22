@@ -1,13 +1,13 @@
   <template>
-  <div class="card">
+  <div class="card  m-4">
     <ul>
       <li>
         <img :src="coverImg" :alt="features.title" />
       </li>
-      <li>Titolo:  {{features.title || features.name}}</li>
-      <li>Titolo originale: {{ features.original_title || features.original_name }}</li>
+      <li> <span class="fw-bold">Titolo:</span>  {{features.title || features.name}}</li>
+      <li><span class="fw-bold">Titolo originale:</span> {{ features.original_title || features.original_name }}</li>
       <li v-if="flags.includes(features.original_language)">
-        <span>Lingua</span>
+        <span class="fw-bold">Lingua</span>
         <img
           class="flag"
           :src="require(`../assets/${features.original_language}.png`)"
@@ -67,15 +67,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.card{
+width: 320px;
 ul {
-  margin-top: 10px;
+  margin-top: 20px;
   li {
     list-style: none;
     
 
       .flag {
-        width: 2%;
-        margin: 2px;
+        width: 8%;
+        margin: 10px;
       }
     
   }
@@ -83,5 +85,6 @@ ul {
         color: yellow;
       }
     
+}
 }
 </style>

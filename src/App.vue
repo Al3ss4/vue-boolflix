@@ -24,7 +24,7 @@ export default {
     return {
       apiUrl: "https://api.themoviedb.org/3/search/movie",
       apiTvUrl: "https://api.themoviedb.org/3/search/tv",
-      coverURL: "https://image.tmdb.org/t/p/w500",
+      coverURL: "https://image.tmdb.org/t/p/w342",
       key: "e73169f9140d1ed90b3e169c4bd87464",
       language: "it-IT",
       arrayMovies: [],
