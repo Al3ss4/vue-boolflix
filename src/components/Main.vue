@@ -1,7 +1,9 @@
 <template>
   <main class="container">
     <div class="row">
-      <div class="d-flex flex-wrap col-12 justify-content-center">
+        <h1 class="text-center my-4">FILM</h1>
+      <div class="d-flex flex-wrap justify-content-center mb-5">
+          
         <Card
           v-for="film in films"
           :key="film.id"
@@ -10,7 +12,8 @@
           :vote="film.vote_average"
         />
       </div>
-      <div class="d-flex flex-wrap col-12 justify-content-center">
+        <h1 class="text-center my-4">TELEFILM</h1>
+      <div class="d-flex flex-wrap  justify-content-center mt-5">
         <Card
           v-for="serie in series"
           :key="serie.id"

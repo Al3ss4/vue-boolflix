@@ -1,15 +1,19 @@
   <template>
   <div class="card-cont m-2">
     <div class="poster">
-      <img :src="coverImg" :alt="features.title"/>
+      <img :src="coverImg" :alt="features.title" />
     </div>
     <div class="film-info">
-        <p><span class="fw-bold">Titolo:</span>
-        {{ features.title || features.name }}</p>
-      
-        <p><span class="fw-bold">Titolo originale:</span>
-        {{ features.original_title || features.original_name }}</p>
-      
+      <p>
+        <span class="fw-bold">Titolo:</span>
+        {{ features.title || features.name }}
+      </p>
+
+      <p>
+        <span class="fw-bold">Titolo originale:</span>
+        {{ features.original_title || features.original_name }}
+      </p>
+
       <p v-if="flags.includes(features.original_language)">
         <span class="fw-bold">Lingua</span>
         <img
@@ -33,10 +37,13 @@
           <i class="fas fa-star"></i>
         </p>
       </div>
-      <p ><strong>Overview: </strong>
-                <span class="over-view" v-if="features.original_title">{{features.overview}}</span>
-                <span class="over-view" v-else>{{features.original_name}}</span>
-            </p>
+      <p>
+        <strong>Overview: </strong>
+        <span class="over-view" v-if="features.original_title">{{
+          features.overview
+        }}</span>
+        <span class="over-view" v-else>{{ features.original_name }}</span>
+      </p>
     </div>
   </div>
 </template>
@@ -79,42 +86,41 @@ export default {
 .card-cont {
   height: 25%;
   position: relative;
-  
 }
 .film-info {
-    position: absolute;
-    top: 0;
-    display: none;
-    padding: 20px;
-    background-color: black;
-    width: 100%;
-    height: 95%;
-  }
-  .card-cont:hover .film-info {
-    display: block;
-  }
-  p {
-    color: white;
-    img {
-        width: 8%;
-    }
-    i {
-        color: yellow;
-    }
-    
+  position: absolute;
+  top: 0;
+  display: none;
+  padding: 20px;
+  background-color: black;
+  width: 100%;
+  z-index: 999;
 }
-.over-view{
-      font-weight: 0.5rem;
-      line-height: none;
-    }
-.poster {
-    height: 20%;
-    img{  
-        width: 100%;
-    }
+.card-cont:hover .film-info {
+  display: block;
 }
-.yellow{
-  color: yellow;
+p {
+  color: white;
+  img {
+    width: 8%;
+   
+  }
+   .flag {
+      width: 15%;
+      margin: 10px;
+    }
+  i {
+    color: yellow;
+  }
 }
 
+.poster {
+  height: 20%;
+  img {
+    width: 100%;
+  }
+}
+.yellow {
+  color: yellow;
+}
 </style>
