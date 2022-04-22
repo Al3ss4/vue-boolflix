@@ -123,13 +123,14 @@ p {
 }
 
 .poster {
-  height: 20%;
+ 
   img {
     width: 100%;
   }
   .poster-img{
   width: 200px;
-  height: 300px;
+  height: 200px;
+  
 }
 }
 .yellow {

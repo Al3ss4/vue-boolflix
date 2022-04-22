@@ -12,7 +12,7 @@
           :vote="film.vote_average"
         />
       </div>
-        <h1 class="text-center my-4">TELEFILM</h1>
+        <h1 class="text-center m-4">TELEFILM</h1>
       <div class="d-flex flex-wrap  justify-content-center mt-5">
         <Card
           v-for="serie in series"
