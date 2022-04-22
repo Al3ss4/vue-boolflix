@@ -6,7 +6,7 @@
                   <Card v-for="film in films" :key="film.id" :features="film" :img="film.poster_path"/>
               </div>
               <div>
-                  <Card v-for="serie in series" :key="serie.id" :features="series"/>
+                  <Card v-for="serie in series" :key="serie.id" :features="serie" :img="serie.poster_path" />
               </div>
           </div>
       </div>
