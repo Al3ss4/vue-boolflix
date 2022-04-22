@@ -1,7 +1,15 @@
   <template>
   <div class="card-cont m-2">
     <div class="poster">
-      <img :src="coverImg" :alt="features.title" />
+      <div v-if="coverImg.includes(null)">
+        <img class="poster-img"
+          :src="require(`../assets/${undefined}.png`)"
+          :alt="features.original_language"
+        />
+      </div>
+      <div v-else>
+        <img :src="coverImg" :alt="features.title" />
+      </div>
     </div>
     <div class="film-info">
       <p>
@@ -59,7 +67,7 @@ export default {
   },
   data() {
     return {
-      flags: ["it", "fr", "es", "de", "ja", "en", "undefined"],
+      flags: ["it", "fr", "es", "de", "ja", "en"],
       coverImg: "",
       stars: 0,
     };
@@ -96,6 +104,7 @@ export default {
   width: 100%;
   z-index: 999;
 }
+
 .card-cont:hover .film-info {
   display: block;
 }
@@ -103,12 +112,11 @@ p {
   color: white;
   img {
     width: 8%;
-   
   }
-   .flag {
-      width: 15%;
-      margin: 10px;
-    }
+  .flag {
+    width: 15%;
+    margin: 10px;
+  }
   i {
     color: yellow;
   }
@@ -119,6 +127,10 @@ p {
   img {
     width: 100%;
   }
+  .poster-img{
+  width: 200px;
+  height: 300px;
+}
 }
 .yellow {
   color: yellow;
