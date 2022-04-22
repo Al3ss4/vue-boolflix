@@ -4,8 +4,8 @@
       <li>
         <img :src="coverImg" :alt="features.title" />
       </li>
-      <li>Titolo: {{ features.title }}</li>
-      <li>Titolo originale: {{ features.original_title }}</li>
+      <li>Titolo:  {{features.title || features.name}}</li>
+      <li>Titolo originale: {{ features.original_title || features.original_name }}</li>
       <li v-if="flags.includes(features.original_language)">
         <span>Lingua</span>
         <img

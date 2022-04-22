@@ -26,6 +26,7 @@ export default {
         films: Array,
         series: Array,
         inputRicerca: String,
+        
     }
 }
 </script>

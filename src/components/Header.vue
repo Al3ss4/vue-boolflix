@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 red title fw-bold d-flex align-items-center">
-          <div>Boolflix</div>
+          <div>Boolflix <i class="fa-solid fa-star"></i></div>
         </div>
 
         <input
