@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  background-color: black;
+  background-color: grey;
   color: black;
 }
 </style>

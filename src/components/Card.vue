@@ -1,20 +1,24 @@
   <template>
-  <div class="card  m-4">
-    <ul>
-      <li>
-        <img :src="coverImg" :alt="features.title" />
-      </li>
-      <li> <span class="fw-bold">Titolo:</span>  {{features.title || features.name}}</li>
-      <li><span class="fw-bold">Titolo originale:</span> {{ features.original_title || features.original_name }}</li>
-      <li v-if="flags.includes(features.original_language)">
+  <div class="card-cont m-2">
+    <div class="poster">
+      <img :src="coverImg" :alt="features.title"/>
+    </div>
+    <div class="film-info">
+        <p><span class="fw-bold">Titolo:</span>
+        {{ features.title || features.name }}</p>
+      
+        <p><span class="fw-bold">Titolo originale:</span>
+        {{ features.original_title || features.original_name }}</p>
+      
+      <p v-if="flags.includes(features.original_language)">
         <span class="fw-bold">Lingua</span>
         <img
           class="flag"
           :src="require(`../assets/${features.original_language}.png`)"
           alt="features.original_language"
         />
-      </li>
-      <li v-else>
+      </p>
+      <p v-else>
         <span class="fw-bold">Lingua</span>
 
         <img
@@ -22,14 +26,18 @@
           :src="require(`../assets/${undefined}.png`)"
           :alt="features.original_language"
         />
-      </li>
-         <ul class="d-flex">
-                <span class="fw-bold me-2">Voto:</span> 
-                <li v-for="(star, i) in stars" :key="i" class="star" >
-                    <i class="fas fa-star"></i>
-                </li> 
-          </ul>
-    </ul>
+      </p>
+      <div class="d-flex">
+        <span class="fw-bold me-2">Voto:</span>
+        <p v-for="(star, i) in stars" :key="i" class="star">
+          <i class="fas fa-star"></i>
+        </p>
+      </div>
+      <p ><strong>Overview: </strong>
+                <span class="over-view" v-if="features.original_title">{{features.overview}}</span>
+                <span class="over-view" v-else>{{features.original_name}}</span>
+            </p>
+    </div>
   </div>
 </template>
 <script>
@@ -37,16 +45,16 @@ export default {
   name: "CardComponent",
   props: {
     features: {
-    type: [ Array, Object ]
-  },
-    img : String,
+      type: [Array, Object],
+    },
+    img: String,
     vote: Number,
   },
   data() {
     return {
       flags: ["it", "fr", "es", "de", "ja", "en", "undefined"],
       coverImg: "",
-      stars:0,
+      stars: 0,
     };
   },
   created() {
@@ -57,34 +65,56 @@ export default {
     addPoster() {
       this.coverImg = "https://image.tmdb.org/t/p/" + "w200" + this.img;
     },
-    voteStar(){
-        if (parseInt(this.vote) != 0){
+    voteStar() {
+      if (parseInt(this.vote) != 0) {
         this.stars = Math.round(parseInt(this.vote) / 2);
-      } else {this.stars = null}
+      } else {
+        this.stars = null;
       }
-    
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
-.card{
-width: 320px;
-ul {
-  margin-top: 20px;
-  li {
-    list-style: none;
-    
-
-      .flag {
-        width: 8%;
-        margin: 10px;
-      }
-    
+.card-cont {
+  height: 25%;
+  position: relative;
+  
+}
+.film-info {
+    position: absolute;
+    top: 0;
+    display: none;
+    padding: 20px;
+    background-color: black;
+    width: 100%;
+    height: 95%;
   }
-    .star{
+  .card-cont:hover .film-info {
+    display: block;
+  }
+  p {
+    color: white;
+    img {
+        width: 8%;
+    }
+    i {
         color: yellow;
-      }
+    }
     
 }
+.over-view{
+      font-weight: 0.5rem;
+      line-height: none;
+    }
+.poster {
+    height: 20%;
+    img{  
+        width: 100%;
+    }
 }
+.yellow{
+  color: yellow;
+}
+
 </style>
