@@ -45,5 +45,10 @@ export default {
 main {
   background-color: grey;
   color: black;
+  overflow-y:scroll;
+  overflow-x: hidden;
+  .row{
+    height: calc(100vh - 90px);
+  }
 }
 </style>

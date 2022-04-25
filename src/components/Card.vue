@@ -103,10 +103,14 @@ export default {
   background-color: black;
   width: 100%;
   z-index: 999;
+    overflow-y:scroll;
+  overflow-x: hidden;
 }
 
 .card-cont:hover .film-info {
   display: block;
+   height: 95%;
+ 
 }
 p {
   color: white;
