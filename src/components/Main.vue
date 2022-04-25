@@ -48,7 +48,7 @@ main {
   overflow-y:scroll;
   overflow-x: hidden;
   .row{
-    height: calc(100vh - 90px);
+    height: calc(100vh - 100px);
   }
 }
 </style>
