@@ -58,7 +58,10 @@ export default {
             this.arrayMovies = responseMovies.data.results;
             this.arraySeries = responseTV.data.results;
           })
-        );
+        )
+         .catch(error => {
+                console.error(error);
+            })
     },
   },
 };
